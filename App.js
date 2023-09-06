@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 
 const generateBoxShadowStyle = (
   xOffset,
@@ -12,14 +12,14 @@ const generateBoxShadowStyle = (
   shadowColorAndroid,
 ) => {
   if (Platform.OS === 'ios') {
-    styles.boxShadow = {
+    return styles.boxShadow = {
       shadowColor: shadowColorIos,
       shadowOffset: { width: xOffset, height: yOffset },
       shadowOpacity,
       shadowRadius,
     };
   } else if (Platform.OS === 'android') {
-    styles.boxShadow = {
+    return styles.boxShadow = {
       elevation,
       shadowColor: shadowColorAndroid,
     };
@@ -27,19 +27,11 @@ const generateBoxShadowStyle = (
 };
 
 export default function App() {
-  const [isPressed, setIsPressed] = useState(false);
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="inverted" />
 
-      <Pressable
-        style={[styles.pressable, styles.androidElevationActive, styles.iosShadowPropActive]}
-        // style={ }
-        onPress={setIsPressed(!isPressed)}
-      >
-        <Text>Pressable!</Text>
-      </Pressable>
       {/* footer */}
       <View style={styles.footer}>
         <Pressable style={styles.pressable}>
@@ -58,12 +50,18 @@ export default function App() {
   );
 }
 
-const grayColor = '#d9d9d9';
+const myColors = {
+  white: '#fff',
+  gray: '#d9d9d9',
+  darkGreen: '#1c211d',
+  lightgreen: '#bfe0c5',
+  shadow: '#8d8d8d',
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: 'relative',
-    backgroundColor: '#fff',
+    backgroundColor: myColors.darkGreen,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -72,14 +70,15 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
     height: '10%',
-    backgroundColor: grayColor,
+    backgroundColor: myColors.lightgreen,
+    opacity: 0.8,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
   pressable: {
-    backgroundColor: 'white',
+    backgroundColor: myColors.white,
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 25,
@@ -89,29 +88,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: myColors.darkGreen,
+    elevation: 8,
+    borderWidth: 0.25,
+    borderBlockColor: myColors.darkGreen,
   },
-  pressed: {},
   text: {
     fontWeight: 'bold',
   },
-  androidElevationActive: {
-    shadowColor: '#171717',
-    elevation: 20,
-  },
-  iosShadowPropActive: {
-    shadowColor: '#171717',
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-  },
   androidElevationInactive: {
-    shadowColor: '#171717',
-    elevation: -20,
+    shadowColor: myColors.shadow,
   },
-  iosShadowPropInactive: {
-    shadowColor: '#171717',
-    shadowOffset: { width: -2, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 0,
+  androidElevationActive: {
+    shadowColor: myColors.shadow,
+    elevation: 20,
   },
 });
