@@ -1,9 +1,12 @@
 import { View, Text, Pressable } from "react-native";
 import { styles } from "../styles/app.styles";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../store/app.context";
 
 export default function Footer() {
     const [selectedPageName, setSelectedPageName] = useState("pick");
+    const appContext = useContext(AppContext);
+    
     return (
         <View style={styles.footer}>
             <Pressable
