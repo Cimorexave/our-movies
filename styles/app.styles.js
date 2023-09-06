@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         height: '10%',
         backgroundColor: myColors.lightgreen,
-        opacity: 0.8,
+        opacity: 0.9,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
@@ -40,14 +40,16 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         shadowColor: myColors.darkGreen,
         elevation: 8,
-        borderWidth: 0.25,
         borderBlockColor: myColors.darkGreen,
     },
     text: {
         fontWeight: 'bold',
     },
     pressed: {
-        elevation: 0,
+        elevation: -5,
+        borderWidth: 0.25,
+        shadowColor: myColors.white,
+        opacity: 0.9,
     },
     androidElevationInactive: {
         shadowColor: myColors.shadow,
