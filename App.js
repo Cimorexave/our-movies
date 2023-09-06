@@ -1,30 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
-import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
-
-const generateBoxShadowStyle = (
-  xOffset,
-  yOffset,
-  shadowColorIos,
-  shadowOpacity,
-  shadowRadius,
-  elevation,
-  shadowColorAndroid,
-) => {
-  if (Platform.OS === 'ios') {
-    return styles.boxShadow = {
-      shadowColor: shadowColorIos,
-      shadowOffset: { width: xOffset, height: yOffset },
-      shadowOpacity,
-      shadowRadius,
-    };
-  } else if (Platform.OS === 'android') {
-    return styles.boxShadow = {
-      elevation,
-      shadowColor: shadowColorAndroid,
-    };
-  }
-};
+import { View } from 'react-native';
+import Footer from './components/Footer';
+import { styles } from './styles/app.styles';
 
 export default function App() {
 
@@ -32,75 +9,8 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style="inverted" />
 
-      {/* footer */}
-      <View style={styles.footer}>
-        <Pressable style={styles.pressable}>
-          <Text style={styles.text}>
-            Pick
-          </Text>
-        </Pressable>
-        <Pressable style={styles.pressable}>
-          <Text style={styles.text}>
-            Browse
-          </Text>
-        </Pressable>
-      </View>
+      <Footer></Footer>
 
     </View>
   );
 }
-
-const myColors = {
-  white: '#fff',
-  gray: '#d9d9d9',
-  darkGreen: '#1c211d',
-  lightgreen: '#bfe0c5',
-  shadow: '#8d8d8d',
-}
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: 'relative',
-    backgroundColor: myColors.darkGreen,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  footer: {
-    position: 'absolute',
-    bottom: 0,
-    width: '100%',
-    height: '10%',
-    backgroundColor: myColors.lightgreen,
-    opacity: 0.8,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-  },
-  pressable: {
-    backgroundColor: myColors.white,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 25,
-    minWidth: 'fit-content',
-    width: 120,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: myColors.darkGreen,
-    elevation: 8,
-    borderWidth: 0.25,
-    borderBlockColor: myColors.darkGreen,
-  },
-  text: {
-    fontWeight: 'bold',
-  },
-  androidElevationInactive: {
-    shadowColor: myColors.shadow,
-  },
-  androidElevationActive: {
-    shadowColor: myColors.shadow,
-    elevation: 20,
-  },
-});
