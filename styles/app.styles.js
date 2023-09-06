@@ -46,6 +46,9 @@ export const styles = StyleSheet.create({
     text: {
         fontWeight: 'bold',
     },
+    pressed: {
+        elevation: 0,
+    },
     androidElevationInactive: {
         shadowColor: myColors.shadow,
     },
