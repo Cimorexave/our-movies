@@ -1,11 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+const generateBoxShadowStyle = (
+  xOffset,
+  yOffset,
+  shadowColorIos,
+  shadowOpacity,
+  shadowRadius,
+  elevation,
+  shadowColorAndroid,
+) => {
+  if (Platform.OS === 'ios') {
+    styles.boxShadow = {
+      shadowColor: shadowColorIos,
+      shadowOffset: { width: xOffset, height: yOffset },
+      shadowOpacity,
+      shadowRadius,
+    };
+  } else if (Platform.OS === 'android') {
+    styles.boxShadow = {
+      elevation,
+      shadowColor: shadowColorAndroid,
+    };
+  }
+};
+
 export default function App() {
+  const [isPressed, setIsPressed] = useState(false);
+
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
 
-      <Pressable style={styles.pressable} onPress={() => console.log("hi")}>
+      <Pressable
+        style={[styles.pressable, styles.androidElevationActive, styles.iosShadowPropActive]}
+        // style={ }
+        onPress={setIsPressed(!isPressed)}
+      >
         <Text>Pressable!</Text>
       </Pressable>
       {/* footer */}
@@ -21,7 +53,7 @@ export default function App() {
           </Text>
         </Pressable>
       </View>
-      <StatusBar style="auto" />
+
     </View>
   );
 }
@@ -61,5 +93,25 @@ const styles = StyleSheet.create({
   pressed: {},
   text: {
     fontWeight: 'bold',
-  }
+  },
+  androidElevationActive: {
+    shadowColor: '#171717',
+    elevation: 20,
+  },
+  iosShadowPropActive: {
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+  androidElevationInactive: {
+    shadowColor: '#171717',
+    elevation: -20,
+  },
+  iosShadowPropInactive: {
+    shadowColor: '#171717',
+    shadowOffset: { width: -2, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 0,
+  },
 });
