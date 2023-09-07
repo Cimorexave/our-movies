@@ -1,16 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import Footer from './components/Footer';
 import { styles } from './styles/app.styles';
 import { AppContext, initialAppContext } from './store/app.context';
+import { useContext, useState } from 'react';
+import Pick from './pages/pick';
+import Browse from './pages/browse';
 
 export default function App() {
-
+  const [appContext, setAppContext] = useState({ pageName: "pick" });
   return (
-    <AppContext.Provider value={initialAppContext}>
+    <AppContext.Provider value={{ appContext, setAppContext }}>
       <View style={styles.container}>
         <StatusBar style="inverted" />
-
+        {appContext.pageName === "pick" ? <Pick></Pick>
+          : appContext.pageName === "browse" ? <Browse></Browse> : null}
         <Footer></Footer>
 
       </View>
