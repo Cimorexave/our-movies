@@ -2,4 +2,4 @@ import { createContext } from "react";
 
 const initialAppContext = {};
 
-export default AppContext = createContext(initialAppContext);
+export default StorageContext = createContext(initialAppContext);
