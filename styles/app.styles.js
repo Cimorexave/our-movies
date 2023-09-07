@@ -52,4 +52,11 @@ export const styles = StyleSheet.create({
         shadowColor: myColors.white,
         opacity: 0.9,
     },
+    modal: {
+        backgroundColor: myColors.lightgreen,
+        borderRadius: 20,
+        elevation: 20,
+        height: '75%',
+        width: 'auto',
+    }
 });
