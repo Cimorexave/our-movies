@@ -15,7 +15,7 @@ export default function App() {
   const [storageContext, setStorageContext] = useState({ movies: [] });
 
   return (
-    <StorageContext.Provider>
+    <StorageContext.Provider value={{ storageContext, setStorageContext }}>
       <AppContext.Provider value={{ appContext, setAppContext }}>
         <View style={styles.container}>
           <StatusBar style="inverted" />
