@@ -1,13 +1,22 @@
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import { styles } from "../styles/app.styles";
 import { pickStyles } from "../styles/pick.styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import myColors from "../styles/colors.styles";
 
 export default Pick = () => {
+    // consts & utils
     const genres = ['Drama', 'Comedy', 'Romance', 'Thriller', 'Action', 'Crime', 'Hindi', 'Western', 'Horror', 'Fantasy', 'Musical', 'War', 'Noir']
+
+    // states
     const [isLoading, setIsLoading] = useState(false);
     const [selectedGenres, setSelectedGenres] = useState([]);
+
+    // lifecycle
+    useEffect(() => {
+    });
+
+    // functions
     const pickRandom = () => {
         setIsLoading(!isLoading);
     }
@@ -35,7 +44,7 @@ export default Pick = () => {
                 )}
             </View>
 
-            
+
 
             {isLoading ? <View style={[styles.horizontalCenterWrapper, styles.verticalCenterWrapper, pickStyles.spinnerWrapper]}>
                 <ActivityIndicator style={pickStyles.spinner} size={"large"} color={myColors.lightgreen}></ActivityIndicator>
