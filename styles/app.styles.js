@@ -1,12 +1,6 @@
 import { StyleSheet } from "react-native";
+import myColors from "./colors.styles";
 
-export const myColors = {
-    white: '#fff',
-    gray: '#d9d9d9',
-    darkGreen: '#1c211d',
-    lightgreen: '#bfe0c5',
-    shadow: '#8d8d8d',
-}
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -14,6 +8,13 @@ export const styles = StyleSheet.create({
         backgroundColor: myColors.darkGreen,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    page: {
+        width: '100%',
+        height: '100%',
+        position: 'relative',
+        paddingTop: 60,
+        paddingHorizontal: 5,
     },
     footer: {
         position: 'absolute',
@@ -50,12 +51,5 @@ export const styles = StyleSheet.create({
         borderWidth: 0.25,
         shadowColor: myColors.white,
         opacity: 0.9,
-    },
-    androidElevationInactive: {
-        shadowColor: myColors.shadow,
-    },
-    androidElevationActive: {
-        shadowColor: myColors.shadow,
-        elevation: 20,
     },
 });
