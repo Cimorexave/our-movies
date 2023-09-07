@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
-export const initialAppContext = {
+const initialAppContext = {
     pageName: "pick",
+    selectedGenres: [],
 }
-export const AppContext = createContext(initialAppContext);
+export default AppContext = createContext(initialAppContext);
