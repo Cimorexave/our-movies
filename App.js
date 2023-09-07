@@ -9,7 +9,11 @@ import Pick from './pages/pick';
 import Browse from './pages/browse';
 
 export default function App() {
+
+  // contexts
   const [appContext, setAppContext] = useState({ pageName: "pick", selectedGenres: [] });
+  const [storageContext, setStorageContext] = useState({ movies: [] });
+
   return (
     <StorageContext.Provider>
       <AppContext.Provider value={{ appContext, setAppContext }}>

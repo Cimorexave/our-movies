@@ -1,5 +1,7 @@
 import { createContext } from "react";
 
-const initialAppContext = {};
+const initialStorageContext = {
+    movies: [],
+};
 
-export default StorageContext = createContext(initialAppContext);
+export default StorageContext = createContext(initialStorageContext);
