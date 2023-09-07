@@ -1,17 +1,19 @@
 import { View, Text, TouchableOpacity, ActivityIndicator } from "react-native";
 import { styles } from "../styles/app.styles";
 import { pickStyles } from "../styles/pick.styles";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import myColors from "../styles/colors.styles";
+import AppContext from "../store/app.context";
 
 export default Pick = () => {
     // consts & utils
     const genres = ['Drama', 'Comedy', 'Romance', 'Thriller', 'Action', 'Crime', 'Hindi', 'Western', 'Horror', 'Fantasy', 'Musical', 'War', 'Noir']
 
+    // contexts
+    const { appContext, setAppContext } = useContext(AppContext);
+
     // states
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedGenres, setSelectedGenres] = useState([]);
-
     // lifecycle
     useEffect(() => {
     });
@@ -21,8 +23,8 @@ export default Pick = () => {
         setIsLoading(!isLoading);
     }
     const selectGenre = (newGenre) => {
-        if (selectedGenres.includes(newGenre)) setSelectedGenres([...selectedGenres.filter(g => g !== newGenre)])
-        else setSelectedGenres([...selectedGenres, newGenre]);
+        if (appContext.selectedGenres.includes(newGenre)) setAppContext({ ...appContext, selectedGenres: [...appContext.selectedGenres.filter(g => g !== newGenre)] })
+        else setAppContext({ ...appContext, selectedGenres: [...appContext.selectedGenres, newGenre] });
     }
     return (
         <View style={[styles.page, pickStyles.pickPage]}>
@@ -36,7 +38,7 @@ export default Pick = () => {
                 {genres.map(genre =>
                     <TouchableOpacity key={`genre-${Math.random()}`}
                         style={[pickStyles.pickRandomButton,
-                        selectedGenres.includes(genre) ? pickStyles.selectedGenreButton : null
+                        appContext.selectedGenres.includes(genre) ? pickStyles.selectedGenreButton : null
                             ,]}
                         onPress={() => selectGenre(genre)}>
                         <Text style={[styles.text]}>{genre}</Text>
