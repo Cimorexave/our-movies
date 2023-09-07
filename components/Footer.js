@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from "react-native";
 import { styles } from "../styles/app.styles";
 import { useContext, useState } from "react";
-import { AppContext } from "../store/app.context";
+import AppContext from "../store/app.context";
 
 export default function Footer() {
 
@@ -14,7 +14,7 @@ export default function Footer() {
                 appContext.pageName === "pick" ? styles.pressed : {}
                 ]}
                 // onPress={() => setSelectedPageName("pick")}
-                onPress={() => setAppContext({ pageName: "pick" })}
+                onPress={() => setAppContext({ ...appContext, pageName: "pick" })}
             >
                 <Text style={styles.text}>
                     Pick
@@ -25,7 +25,7 @@ export default function Footer() {
                 appContext.pageName === "browse" ? styles.pressed : {}
                 ]}
                 // onPress={() => setSelectedPageName("browse")}
-                onPress={() => setAppContext({ pageName: "browse" })}
+                onPress={() => setAppContext({ ...appContext, pageName: "browse" })}
             >
                 <Text style={styles.text}>
                     Browse
