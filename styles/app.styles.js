@@ -58,5 +58,17 @@ export const styles = StyleSheet.create({
         elevation: 20,
         height: '75%',
         width: 'auto',
-    }
+    },
+    horizontalCenterWrapper: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    verticalCenterWrapper: {
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
